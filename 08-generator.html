@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 加上*号表示加上生成器 yield为暂时放弃 与next搭配使用
+  function *show(num) {
+    alert(num);
+    let a = yield num;
+    
+    num ++
+    
+    let b = yield num;
+
+    num ++;
+    let c = yield num;
+    
+    num ++;
+    // 最后返回的值
+    return num;
+  }
+  
+  let gen = show(10);
+  
+  let res1 = gen.next();
+  console.log(res1);
+  let res2 = gen.next();
+  console.log(res2);
+  let res3 = gen.next();
+  console.log(res3);
+  let last = gen.next();
+  console.log(last);
+
+</script>
+
+</body>
+</html>

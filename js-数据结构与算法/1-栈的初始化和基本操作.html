@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // Method 方法对于对象来说
+  //function 函数 普通
+  // js基于对象
+  function Stack() {
+    this.items = [];
+    // 1.栈加入元素
+    Stack.prototype.push = function (num) {
+      this.items.push(num)
+    }
+    // 2.删除栈顶元素并弹出
+    Stack.prototype.pop = function () {
+      return this.items.pop()
+    }
+    // 3.返回栈顶元素 不删除
+    Stack.prototype.peek = function () {
+      return this.items[this.items.length - 1];
+    }
+    // 4.判断栈是否为空
+    Stack.prototype.isEmpty = function () {
+      return this.items.length === 0;
+    }
+    // 5.栈的长度判断
+    Stack.prototype.size = function () {
+      return this.items.length;
+    }
+    // 6.toString方法
+    Stack.prototype.toString = function () {
+      let resultString = this.items.join(',');
+      // for (let i = 0; i < this.items.length; i++) {
+      //   resultString += this.items[i] + ' '
+      // }
+      return resultString;
+    }
+  }
+  
+  // 创建一个新栈
+  // let stack = new Stack();
+  // stack.push(10);
+  // stack.push(20);
+  // stack.push(30);
+  // stack.push(40);
+  //
+  // alert(stack.toString());
+  
+  // 十进制转为二进制
+  function dec2bin(decNum) {
+    let stack = new Stack();
+    while(decNum > 0){
+      // 取余数都加进去
+      stack.push(decNum%2);
+      
+      decNum = Math.floor(decNum/2);
+      
+    }
+    
+    return stack.toString();
+  }
+
+  alert(dec2bin(10));
+</script>
+
+</body>
+</html>

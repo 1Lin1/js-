@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>优先级队列</title>
+</head>
+<body>
+</body>
+<script>
+  function PriorityQueue() {
+    // 理解为内部类
+    function QueueElement(element,priority) {
+      this.element = element;
+      this.priority = priority;
+    }
+    
+    // 初始化数组
+    this.items = [];
+    
+    PriorityQueue.prototype.enqueue = function (element,priority) {
+      // 新创建一个对象
+        let newElement = new QueueElement(element,priority);
+        //数组为空 直接插入
+        if(this.items.length ===0){
+          this.items.push(newElement);
+        }else{
+          // 判断是否插入
+          let added = false;
+          for (let i = 0; i < this.items.length; i++) {
+            if(newElement.priority < this.items[i].priority ){
+              this.items.splice(i,0,newElement);
+              added = true;
+              break;
+            }
+          }
+          
+          // 若比较没插入 则放到最后插入
+          if(!added){
+            this.items.push(newElement);
+          }
+        }
+      }
+    
+    PriorityQueue.prototype.dequeue = function () {
+      return this.items.shift();
+    }
+    
+    PriorityQueue.prototype.front = function(){
+      return this.items[0];
+    }
+    
+    PriorityQueue.prototype.isEmpty = function () {
+      return this.items.length === 0;
+    }
+    
+    PriorityQueue.prototype.size = function () {
+      return this.items.length;
+    }
+    
+    PriorityQueue.prototype.toString = function () {
+      let resultString = '';
+      for (let i = 0; i < this.items.length; i++) {
+        resultString += this.items[i].element + ' ' + this.items[i].priority +','
+      }
+      return resultString;
+    }
+    
+  }
+  
+  let pq = new PriorityQueue();
+  pq.enqueue('a',10)
+  pq.enqueue('b',100);
+  pq.enqueue('c',50);
+  pq.enqueue('d',65);
+  
+  alert(pq);
+</script>
+</html>

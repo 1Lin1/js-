@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery.js"></script>
+</head>
+<body>
+<script>
+  
+ 
+  // 有逻辑的调用 同步写法 操作异步的想法
+  //比如要调用的用户如果是会员 则逻辑的调用会员的信息
+  let getData = async () => {
+      let data1 = await $.ajax({url:'data/a.json',dataType:'json'});
+       console.log(data1);
+    if(data1.id ===1){
+      let data2 = await $.ajax({url:'data/b.json',dataType:'json'});
+      console.log(data2);
+    }else{
+      let data3 = await $.ajax({url:'data/c.json',dataType:'json'});
+      console.log(data3);
+    }
+
+  }
+  getData();
+
+
+</script>
+</body>
+</html>

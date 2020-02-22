@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // let score =[10,60,99,59,44,53];
+  // let result =score.map(item => item>60?'及格':'不及格');
+  // console.log(score);
+  // console.log(result);
+  // 平均数
+  let score =[10,60,30,50];
+  let result = score.reduce((prv,item,index) => {
+    if(index != score.length -1){
+      return prv + item;
+    }else{
+      return  (prv + item) / score.length
+    }
+  });
+  console.log(result);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery.js"></script>
+  <script src="./node_modules/yield-runner-blue/index.js"></script>
+</head>
+<body>
+<script>
+ runner(function *() {
+   let data1 = yield $.ajax({url:'data/1.txt',dataType:'json'});
+   let data2 = yield $.ajax({url:'data/a.json',dataType:'json'});
+   alert(data1)
+ })
+</script>
+
+</body>
+</html>
