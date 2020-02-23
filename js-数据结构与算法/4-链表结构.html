@@ -52,14 +52,14 @@
     LinkList.prototype.get = function (position) {
       if(position < 0 || position >= this.length ) return null;
     
-      let index = 0;
-      let current = this.head;
-      
-      while(index ++ < position){
-        current = current.next;
-      }
-      return current.data;
+    let index = 0;
+    let current = this.head;
+  
+    while(index ++ < position){
+      current = current.next;
     }
+    return current.data;
+  }
   
   
     LinkList.prototype.insert = function (position,data) {

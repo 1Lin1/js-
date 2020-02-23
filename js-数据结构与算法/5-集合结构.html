@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+  //集合 无序 不能重复
+  
+  function Set() {
+    this.items = {};
+    
+    Set.prototype.add = function (value) {
+      //判断是否有该值
+      if(this.has(value)){
+        return false;
+      }
+      this.items[value] = value;
+      return true;
+    }
+    
+    //判断是否有该值
+    Set.prototype.has = function (value) {
+      return this.items.hasOwnProperty(value)
+    }
+  
+    Set.prototype.remove = function (value) {
+      if(!this.has(value)) return false;
+      
+      delete this.items[value];
+      return true;
+    }
+  
+    Set.prototype.sizes = function () {
+      return Object.keys(this.items).length;
+    }
+  
+    Set.prototype.values = function () {
+      return Object.keys(this.items);
+    }
+    
+    //取两个集合的并集 
+    Set.prototype.union = function (otherSet) {
+      let uniSet = new Set();
+      
+      //把A集合加入
+      let aValues = this.values();
+      for (let i = 0; i < aValues.length; i++) {
+        uniSet.add(aValues[i])
+      }
+      
+      //把B集合加入
+      let bValues = otherSet.values();
+      for (let i = 0; i < bValues.length; i++) {
+        uniSet.add(bValues[i]);
+      }
+      
+      return uniSet
+    }
+    
+    //取交集
+    Set.prototype.intersection = function (otherSet) {
+      let interS = new Set();
+      let values = this.values();
+      for (let i = 0; i < values.length; i++) {
+        let item = values[i];
+        if(otherSet.has(item)){
+          interS.add(item);
+        }
+      }
+      
+      return interS;
+    }
+    
+    //取差集
+    Set.prototype.difference = function (otherSet) {
+      let diffS = new Set();
+      let values = this.values();
+      for (let i = 0; i < values.length; i++) {
+        let item = values[i];
+        if(!otherSet.has(item)){
+          diffS.add(item);
+        }
+      }
+    
+      return diffS;
+    }
+    
+    //是否为子集
+    Set.prototype.sub = function (otherSet) {
+      let values = this.values();
+      for (let i = 0; i < values.length; i++) {
+        let item = values[i];
+        if(!otherSet.has(item)){
+          return  false;
+        }
+        
+      }
+    
+      return true;
+    }
+  
+  
+  
+  }
+  
+  // let set = new Set();
+  // set.add('a');
+  // set.add('b');
+  // set.add('c');
+  //
+  // alert(set.values() + set.sizes())
+  //
+  // set.remove('a')
+  //
+  // alert(set.values() + set.sizes())
+  
+  let setA = new Set();
+  setA.add('a');
+  setA.add('b');
+  setA.add('c');
+  console.log(setA);
+  let setB = new Set();
+  setB.add('a');
+  setB.add('b');
+  setB.add('c');
+  
+  let uniSet = setA.union(setB);
+  alert('并集' + uniSet.values());
+  
+  let interSet = setA.intersection(setB);
+  alert("交集" + interSet.values());
+  
+  let diffSet = setA.difference(setB);
+  alert("差集" + diffSet.values())
+  
+  alert(setA.sub(setB));
+
+
+</script>
+</html>
